@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('fecha_visita');
             $table->string('motivo');
             $table->text('tratamiento')->nullable();
+            $table->integer('mascotas_id');
             $table->timestamps();
         });
     }

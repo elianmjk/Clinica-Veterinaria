@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dueno extends Model
 {
-    protected $fillable = ['nombre', 'apellido', 'dirección', 'teléfono', 'email'];
-
-    public function mascotas()
-    {
-        return $this->hasMany(Mascota::class);
-    }
+   
+    
     use HasFactory;
+   protected  $table='duenos'; //vamos a modificar esta tabla 
+   public function mascotas(){
+
+    return $this->hasMany(Mascota::class,'dueno_id'); //UN DUEÑO PUEDE TENER MULTIPLES MASCOTAS 
+
+   }
+
 }

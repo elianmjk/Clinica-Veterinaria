@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('especie');
             $table->string('raza');
             $table->integer('edad');
+            $table->integer('dueno_id');
             $table->timestamps();
           
              
