@@ -43,7 +43,7 @@ class MascotaController extends Controller
          $mascotas->especie=$request->especie;
          $mascotas->raza=$request->raza;
          $mascotas->edad=$request->edad;
-         $mascotas->dueno_id=$request->dueno;
+         $mascotas->dueno_id=$request->dueno_id;
          $mascotas->save();
          return redirect()->route("mascotas.index");
 
@@ -54,7 +54,7 @@ class MascotaController extends Controller
      */
     public function show(string $id)
     {
-        //
+      
     }
 
     /**
@@ -63,7 +63,7 @@ class MascotaController extends Controller
     public function edit(string $id)
     {
         $mascota = Mascota::find($id);
-        return view('mascota.edit',['mascota'=> $mascota]);
+        return view('mascotas.edit',['mascota'=> $mascota]);
     }
 
     /**
@@ -74,18 +74,13 @@ class MascotaController extends Controller
         $mascotas = Mascota::find($id);
 
         $mascotas->nombre = $request->nombre;
-        $mascotas->apellido = $request->apellido;
-        $mascotas->fecha_nacimiento = $request->fecha_nacimiento;
-        $mascotas->genero = $request->genero;
-        $mascotas->direccion = $request->direccion;
-        $mascotas->telefono = $request->telefono;
-        $mascotas->email = $request->email;
-        // $paciente->id = $request->id;
+        $mascotas->especie=$request->especie;
+        $mascotas->raza=$request->raza;
+        $mascotas->edad=$request->edad;
+        $mascotas->dueno_id=$request->dueno_id;
         $mascotas->save();
-
-     
-
-        return redirect()->route("pacientes.index");
+        
+        return redirect()->route("mascotas.index");
     }
 
     /**
@@ -97,6 +92,6 @@ class MascotaController extends Controller
         $mascotas->delete();
 
         $mascotas = Mascota::all();
-        return redirect()->route("pacientes.index");
+        return redirect()->route("mascotas.index");
     }
 }

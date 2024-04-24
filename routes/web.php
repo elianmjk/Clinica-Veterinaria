@@ -24,6 +24,9 @@ Route::get('/', function () {
 Route::get('/mascotas', [MascotaController::class, 'index'])->name('mascotas.index');
 Route::get('/mascotas/create',[MascotaController::class,'create'])->name('mascotas.create');
 Route::post('/mascotas/store',[MascotaController::class,'store'])->name('mascotas.store');
+Route::get('/mascotas/{id}/edit',[MascotaController::class,'edit'])->name('mascotas.edit');
+Route::put('/mascotas/{id}/update',[MascotaController::class,'update'])->name('mascotas.update');
+Route::delete('/mascotas/{id}/delete', [MascotaController::class,'destroy'])->name('mascotas.destroy');
 
 
 Route::get('/duenos',[DuenoController::class,'index'])->name('duenos.index');

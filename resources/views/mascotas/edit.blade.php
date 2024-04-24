@@ -21,9 +21,9 @@
         </div>
         <p></p>
         <p></p>
-        <form method="POST" action="{{ route('mascota.update', ['mascota' => $mascota->id]) }}">
-
-            @method('put')
+        <form method="POST" action="{{ route('mascotas.update', ['id' => $mascota->id]) }}">
+      <!-- EL metodo purt es para actualizar no se pone porque no existe en method se agrega despues    -->
+            @method('put')<!--Aqui lo Agregamos-->
             @csrf
             <hr>
 
@@ -31,7 +31,7 @@
                 <div class="col-md-4" style="margin-right: 435px;">
                     <div class="mb-3">
                         <label for="codigo" class="form-label">Id</label>
-                        <input type="text" class="form-control" id="id" aria-describedby="codigoHelp" name="id" disabled="disabled" value="{{$medico->id}}">
+                        <input type="text" class="form-control" id="id" aria-describedby="codigoHelp" name="id" disabled="disabled" value="{{$mascota->id}}">
                         <!-- <div id="codigoHelp" class="form-text">Codigo</div> -->
                     </div>
                 </div>
@@ -44,6 +44,15 @@
                         <input type="text" required class="form-control" id="nombre" placeholder="Edit nombre" name="nombre" value="{{$mascota->nombre}}">
                     </div>
                 </div>
+
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Dueño_ID</label>
+                            <input type="text" required class="form-control" id="dueno_id" placeholder="Edit dueno_id" name="dueno_id" value="{{$mascota->dueno_id}}">
+                        </div>
+                    </div>
+
 
                 <div class="col-md-4">
                     <div class="mb-3">
@@ -69,7 +78,7 @@
 
                 <div class="col-md-4">
                     <div class="mb-3">
-                        <label for="horario_fecha" class="form-label">edad</label>
+                        <label for="edad" class="form-label">edad</label>
                         <input type="number" class="form-edad" id="edad" name="edad" value="{{$mascota->edad}}" >
                     </div>
                 </div>
@@ -80,7 +89,7 @@
                     <div class="col-md-4">
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary">Update</button>
-                            <a href="{{ route('mascota.index') }}" class="btn btn-warning">Cancel</a>
+                            <a href="{{ route('mascotas.index') }}" class="btn btn-warning">Cancel</a>
                         </div>
                     </div>
                 </div>

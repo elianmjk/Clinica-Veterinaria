@@ -32,6 +32,7 @@ class DuenoController extends Controller
     {
       $duenos=new Dueno;
       $duenos->nombre=$request->nombre;
+      $duenos->dueno_id=$request->dueno_id;
       $duenos->apellido=$request->apellido;
       $duenos->direccion=$request->direccion;
       $duenos->telefono=$request->telefono;
