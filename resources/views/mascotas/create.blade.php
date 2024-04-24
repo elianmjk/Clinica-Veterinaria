@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Mascotas</title>
+    <title>Agregar Mascotas</title>
     <style>
         /* Estilos CSS aquí */
     </style>
@@ -32,8 +32,17 @@
         <input type="number" id="edad" name="edad" required>
     </label>
     <br>
+    <label for="dueno_id">Propietario:</label>
+    <select id="dueno_id" name="dueno_id">
+        <option value="">choose one</option>
+        @foreach($duenos as $dueno)
+            <option value="{{$dueno->id}}">{{$dueno->nombre}}</option>
+        @endforeach
+    </select>
+    <br>
+    
     <!-- Campo para la clave foránea 'dueno_id' -->
-    <button type="submit">Enviar</button>
+    <button type="submit">save</button>
 </form>
 
 </body>

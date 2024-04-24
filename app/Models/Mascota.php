@@ -11,12 +11,9 @@ class Mascota extends Model
     
     use HasFactory;
    protected $table='mascotas';
-
-   public function dueno(){
-    return $this->BelongsTo(Dueno::class,'dueno_id'); //UNA MASCOTA PERTENECE A UN DUEÑO.
-   }
-   public function visita(){
-   return $this->hasMany(Visita::class,'mascotas_id'); //UNA MASCOTA TIENE MUCHAS VISITAS.
-   }
+   protected $primarykey='id';
+   
+   protected $timestamp=false;
+   
 
 }

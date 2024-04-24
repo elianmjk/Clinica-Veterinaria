@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dueno;
 use Illuminate\Http\Request;
 
 class DuenoController extends Controller
@@ -11,7 +12,9 @@ class DuenoController extends Controller
      */
     public function index()
     {
-        //
+        $duenos=Dueno::all();
+        return view('dueno.index',compact('duenos'));
+        
     }
 
     /**
@@ -19,7 +22,7 @@ class DuenoController extends Controller
      */
     public function create()
     {
-        //
+        return view('dueno.create');
     }
 
     /**
@@ -27,7 +30,15 @@ class DuenoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $duenos=new Dueno;
+      $duenos->nombre=$request->nombre;
+      $duenos->apellido=$request->apellido;
+      $duenos->direccion=$request->direccion;
+      $duenos->telefono=$request->telefono;
+      $duenos->email=$request->email;
+      $duenos->save();
+      $duenos=Dueno::all(); //ESTE METODO DEVUELVE LA COLECCION DUENOS 
+     
     }
 
     /**
@@ -43,7 +54,8 @@ class DuenoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $duenos= Dueno::find($id);
+        return view('dueno.edit',['duenos'=> $duenos]);
     }
 
     /**
@@ -51,7 +63,17 @@ class DuenoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $duenos = Dueno::find($id);
+
+        $duenos->nombre = $request->nombre;
+        $duenos->apellido = $request->apellido;
+        $duenos->especialidad = $request->especialidad;
+        $duenos->horarios = $request->horarios;
+        $duenos->telefono = $request->telefono;
+        $duenos->email = $request->email;
+        $duenos->save();
+
+        return redirect()->route("dueno.index");
     }
 
     /**
@@ -59,6 +81,9 @@ class DuenoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $duenos = Dueno::find($id);
+        $duenos->delete();
+
+        return redirect()->route("dueno.index");
     }
 }

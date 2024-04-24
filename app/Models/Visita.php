@@ -10,9 +10,9 @@ class Visita extends Model
 {
   
     use HasFactory;
-    public function mascotas(){
+  protected $table='visitas';
+  protected $primarykey='id';
+  protected $timestamp=false;
 
-     return $this->BelongsTo(Mascota::class,'mascotas_id');  //VISITA PERTENECES A UNA PERSONA ESPECIFICA 
 
-    }
 }

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DuenoController;
 use App\Http\Controllers\MascotaController;
+use App\Models\Dueno;
 use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +26,6 @@ Route::get('/mascotas/create',[MascotaController::class,'create'])->name('mascot
 Route::post('/mascotas/store',[MascotaController::class,'store'])->name('mascotas.store');
 
 
+Route::get('/duenos',[DuenoController::class,'index'])->name('duenos.index');
+Route::get('/duenos/create',[DuenoController::class,'create'])->name('duenos.create');
+Route::post('/duenos/store',[DuenoController::class,'store'])->name('duenos.store');
