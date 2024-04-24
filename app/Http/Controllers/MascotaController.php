@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mascota;
 use Illuminate\Http\Request;
 
 class MascotaController extends Controller
@@ -9,18 +10,28 @@ class MascotaController extends Controller
     
     public function index()
     {
-       
+       $mascotas=Mascota::all();
+       return view('mascotas.index',compact('mascotas')); //el compact es para que pueda resibir esa variable en la vista
+    
     }
 
     public function create()
     {
+        return view('mascotas.create');
       
     }
 
    
     public function store(Request $request)
     {
-        //
+         $mascotas=new mascota;
+         $mascotas->nombre=$request->nombre;
+         $mascotas->especie=$request->especie;
+         $mascotas->raza=$request->raza;
+         $mascotas->edad=$request->edad;
+         $mascotas->dueno_id=$request->dueno_id;
+         $mascotas->save();
+
     }
 
     /**

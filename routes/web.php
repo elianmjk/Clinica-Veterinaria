@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MascotaController;
+use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/mascotas', [MascotaController::class, 'index'])->name('mascotas.index');
+Route::get('/mascotas/create',[MascotaController::class,'create'])->name('mascotas.create');
+Route::post('/mascotas/store',[MascotaController::class,'store'])->name('mascotas.store');
+
+
