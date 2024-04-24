@@ -32,7 +32,6 @@
         <input type="number" id="edad" name="edad" required>
     </label>
     <br>
-   
     <!-- Campo para la clave foránea 'dueno_id' -->
     <button type="submit">Enviar</button>
 </form>
