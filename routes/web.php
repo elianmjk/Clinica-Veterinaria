@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DuenoController;
+use App\Http\Controllers\MascotaController;
+use App\Models\Dueno;
+use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
 
 // Rutas de autenticación
@@ -28,14 +31,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/mascotas', [MascotaController::class, 'index'])->name('mascotas.index');
+Route::get('/mascotas/create',[MascotaController::class,'create'])->name('mascotas.create');
+Route::post('/mascotas/store',[MascotaController::class,'store'])->name('mascotas.store');
+Route::get('/mascotas/{id}/edit',[MascotaController::class,'edit'])->name('mascotas.edit');
+Route::put('/mascotas/{id}/update',[MascotaController::class,'update'])->name('mascotas.update');
+Route::delete('/mascotas/{id}/delete', [MascotaController::class,'destroy'])->name('mascotas.destroy');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
-require __DIR__.'/auth.php';
+Route::get('/duenos',[DuenoController::class,'index'])->name('duenos.index');
+Route::get('/duenos/create',[DuenoController::class,'create'])->name('duenos.create');
+Route::post('/duenos/store',[DuenoController::class,'store'])->name('duenos.store');
