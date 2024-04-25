@@ -1,26 +1,41 @@
 <?php
 
-use App\Http\Controllers\MascotaController;
-use Faker\Guesser\Name;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+// Rutas de autenticación
+Route::get('/login', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'create'])
+    ->middleware('guest')
+    ->name('login');
 
+Route::post('/login', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'store'])
+    ->middleware('guest');
+
+Route::post('/logout', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('logout');
+
+// Rutas de registro
+Route::get('/register', [App\Http\Controllers\Auth\RegisteredUserController::class, 'create'])
+    ->middleware('guest')
+    ->name('register');
+
+Route::post('/register', [App\Http\Controllers\Auth\RegisteredUserController::class, 'store'])
+    ->middleware('guest');
+
+// Rutas existentes
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/mascotas', [MascotaController::class, 'index'])->name('mascotas.index');
-Route::get('/mascotas/create',[MascotaController::class,'create'])->name('mascotas.create');
-Route::post('/mascotas/store',[MascotaController::class,'store'])->name('mascotas.store');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
+require __DIR__.'/auth.php';
