@@ -7,7 +7,7 @@
     <title>Listado de Mascotas</title>
 </head>
 <body>
-    <a href="{{route('mascotas.create')}}">Crear</a>
+    <a href="{{ route('mascotas.create') }}">Crear</a>
     <table class="table">
         <thead>
             <tr>
@@ -23,8 +23,8 @@
         <tbody>
             @foreach ($mascotas as $mascota)
             <tr>
-                <th scope="row">{{ $mascota->id }}</th>
-                <td>{{$mascota->dueno_id }}</td>
+                <td>{{ $mascota->id }}</td>
+                <td>{{ $mascota->dueno_id }}</td>
                 <td>{{ $mascota->nombre }}</td>
                 <td>{{ $mascota->especie }}</td>
                 <td>{{ $mascota->raza }}</td>

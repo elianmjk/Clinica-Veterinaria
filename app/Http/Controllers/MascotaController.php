@@ -8,29 +8,29 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-
-
-
 class MascotaController extends Controller
 {
     
     public function index()
     {
-       $mascotas=DB::table('mascotas')
-       ->join('duenos', 'mascotas.dueno_id', '=', 'duenos.id')
-       ->select('mascotas.*', 'duenos.nombre AS nombre_dueno')
-       ->get();
-   
-   return view('mascotas.index', ['mascotas' => $mascotas]);
-       
+        $mascotas=Mascota::all();
+        return view('mascotas.index',compact('mascotas')); //el compact es para que pueda resibir esa variable en la vista
+        
+        $mascotas=DB::table('mascotas')
+        ->join('duenos', 'mascotas.dueno_id', '=', 'duenos.id')
+        ->select('mascotas.*', 'duenos.nombre AS nombre_dueno')
+        ->get();      
+ 
+    return view('mascotas.index', ['mascotas' => $mascotas]);
     
     }
 
     public function create()
     {
+        return view('mascotas.create');
 
-    $duenos = Dueno::all();
-    return view('mascotas.create', compact('duenos'));
+      $duenos = Dueno::all();
+      return view('mascotas.create', compact('duenos'));
       
     }
 
@@ -54,7 +54,7 @@ class MascotaController extends Controller
      */
     public function show(string $id)
     {
-      
+        
     }
 
     /**
@@ -79,7 +79,7 @@ class MascotaController extends Controller
         $mascotas->edad=$request->edad;
         $mascotas->dueno_id=$request->dueno_id;
         $mascotas->save();
-        
+
         return redirect()->route("mascotas.index");
     }
 
