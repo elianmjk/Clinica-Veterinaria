@@ -17,6 +17,11 @@
         <input type="text" id="nombre" name="nombre" required>
     </label>
     <br>
+    <label for="dueno_id">
+        Dueño_ID:
+        <input type="text" id="dueno_id" name="dueno_id" required>
+    </label>
+    <br>
     <label for="especie">
         Especie:
         <input type="text" id="especie" name="especie" required>
