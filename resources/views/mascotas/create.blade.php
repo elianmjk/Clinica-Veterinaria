@@ -31,6 +31,7 @@
         Raza:
         <input type="text" id="raza" name="raza" required>
     </label>
+    
     <br>
     <label for="edad">
         Edad:
