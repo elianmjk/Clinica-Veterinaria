@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\DuenoController;
+use App\Http\Controllers\VisitaController;
 use App\Http\Controllers\MascotaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;

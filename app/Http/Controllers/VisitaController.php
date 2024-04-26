@@ -35,7 +35,7 @@ class VisitaController extends Controller
         $visita = new Visita;
         
         // Asignar los valores recibidos del formulario a los atributos de la visita
-        $visita->mascota_id = $request->mascota_id;
+        $visita->mascotas_id = $request->mascota_id;
         $visita->fecha_visita = $request->fecha_visita;
         $visita->motivo = $request->motivo;
         $visita->tratamiento = $request->tratamiento;
@@ -51,7 +51,9 @@ class VisitaController extends Controller
     {
         
         $visita = Visita::find($id);
-        return view('visitas.edit',['visita'=> $visita]);
+        $mascotas = Mascota::all();
+        return view('visitas.edit',['mascotas'=> $mascotas,'visita'=>$visita]);
+        
     }
 
     public function update(Request $request, $id)
@@ -60,7 +62,7 @@ class VisitaController extends Controller
     $visita = Visita::findOrFail($id);
 
     // Actualizar los campos de la visita con los valores del formulario
-    $visita->mascota_id = $request->mascota_id;
+    $visita->mascotas_id = $request->mascota_id;
     $visita->fecha_visita = $request->fecha_visita;
     $visita->motivo = $request->motivo;
     $visita->tratamiento = $request->tratamiento;

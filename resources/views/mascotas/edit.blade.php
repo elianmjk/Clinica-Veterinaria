@@ -107,11 +107,13 @@
         </form>
     </div>
 
-    <!-- Recuadro en la esquina inferior derecha -->
-    <div class="recuadro">
+  <!-- Recuadro en la esquina inferior derecha -->
+  <div class="recuadro">
         <img src="https://previews.123rf.com/images/qoolio/qoolio1603/qoolio160300028/53841816-logo-mascota-concepto-m%C3%ADnima-vector-para-la-tienda-de-mascotas-o-en-un-hotel.jpg" alt="Mascota">
     </div>
-    <a href="{{ route('dashboard') }}" style="position: fixed; bottom: 20px; left: 20px; background-color: #007bff; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none;">Regresar al inicio</a>
+
+    <!-- Enlace para regresar al inicio -->
+    <a href="{{ route('dashboard') }}" class="regresar-btn">Regresar al inicio</a>
 </body>
 
 </html>
