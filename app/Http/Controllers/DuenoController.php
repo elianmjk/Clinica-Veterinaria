@@ -2,88 +2,66 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dueno;
 use Illuminate\Http\Request;
+use App\Models\Dueno;
+use Illuminate\Support\Facades\DB;
 
 class DuenoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $duenos=Dueno::all();
-        return view('duenos.index',compact('duenos'));
+        $duenos = Dueno::all();
+        return view('duenos.index', compact('duenos'));
+       
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('duenos.create');
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $duenos=new Dueno;
-        $duenos->nombre=$request->nombre;
+        $dueno = new Dueno;
+        $dueno->nombre = $request->nombre;
+        $dueno->apellido = $request->apellido;
+        $dueno->direccion = $request->direccion;
+        $dueno->telefono = $request->telefono;
+        $dueno->email = $request->email;
+        $dueno->save();
+        
+        return redirect()->route("duenos.index");
+        
+    }
+
+    public function edit($id)
+    {
+        
+        $dueno = Dueno::find($id);
+        return view('duenos.edit',['dueno'=> $dueno]);
+    }
+
+    public function update(Request $request, $id)
+    {
+       
+        $duenos = Dueno::find($id);
+        $duenos->nombre = $request->nombre;
         $duenos->apellido=$request->apellido;
         $duenos->direccion=$request->direccion;
         $duenos->telefono=$request->telefono;
         $duenos->email=$request->email;
         $duenos->save();
-        $duenos=Dueno::all(); //ESTE METODO DEVUELVE LA COLECCION DUENOS 
 
+        return redirect()->route('duenos.index');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-    
-        $duenos= Dueno::find($id);
-        return view('duenos.edit',['duenos'=> $duenos]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        $duenos = Dueno::find($id);
-
-        $duenos->nombre = $request->nombre;
-        $duenos->apellido = $request->apellido;
-        $duenos->especialidad = $request->especialidad;
-        $duenos->horarios = $request->horarios;
-        $duenos->telefono = $request->telefono;
-        $duenos->email = $request->email;
-        $duenos->save();
-
-        return redirect()->route("duenos.index");
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $duenos = Dueno::find($id);
         $duenos->delete();
 
+        $duenos = Dueno::all();
         return redirect()->route("duenos.index");
     }
 }

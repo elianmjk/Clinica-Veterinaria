@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-ramashimano',
         'version' => 'dev-ramashimano',
-        'reference' => '93de1f13b83e789d05ae85910084281ff94e02fb',
+        'reference' => 'e4097cb29799db0c4711a9818308e1f3e149ac47',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -427,7 +427,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-ramashimano',
             'version' => 'dev-ramashimano',
-            'reference' => '93de1f13b83e789d05ae85910084281ff94e02fb',
+            'reference' => 'e4097cb29799db0c4711a9818308e1f3e149ac47',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

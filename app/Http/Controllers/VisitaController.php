@@ -3,62 +3,82 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Visita;
+use App\Models\Mascota;
 
 class VisitaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+       // Usando Eloquent ORM
+    $visitas = Visita::all();
+    
+    // O usando el constructor de consultas de Laravel
+    // $visitas = DB::table('visitas')
+    //     ->join('mascotas', 'visitas.mascota_id', '=', 'mascotas.id')
+    //     ->select('visitas.*', 'mascotas.nombre AS nombre_mascota')
+    //     ->get();
+    
+    // Pasar las visitas a la vista
+    return view('visitas.index', compact('visitas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $mascotas = Mascota::all();
+        return view('visitas.create', compact('mascotas'));
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $visita = new Visita;
+        
+        // Asignar los valores recibidos del formulario a los atributos de la visita
+        $visita->mascota_id = $request->mascota_id;
+        $visita->fecha_visita = $request->fecha_visita;
+        $visita->motivo = $request->motivo;
+        $visita->tratamiento = $request->tratamiento;
+    
+        // Guardar la visita en la base de datos
+        $visita->save();
+    
+        // Redirigir al index de visitas
+        return redirect()->route("visitas.index");
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        
+        $visita = Visita::find($id);
+        return view('visitas.edit',['visita'=> $visita]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, $id)
     {
-        //
+         // Encontrar la visita por su ID
+    $visita = Visita::findOrFail($id);
+
+    // Actualizar los campos de la visita con los valores del formulario
+    $visita->mascota_id = $request->mascota_id;
+    $visita->fecha_visita = $request->fecha_visita;
+    $visita->motivo = $request->motivo;
+    $visita->tratamiento = $request->tratamiento;
+
+    // Guardar los cambios
+    $visita->save();
+
+    // Redirigir al index de visitas
+    return redirect()->route("visitas.index");
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy($id)
     {
-        //
-    }
+      
+        $visita = Visita::find($id);
+        $visita->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $visita = Visita::all();
+        return redirect()->route("visitas.index");
     }
 }

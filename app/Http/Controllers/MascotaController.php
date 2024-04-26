@@ -30,7 +30,7 @@ class MascotaController extends Controller
         return view('mascotas.create');
 
       $duenos = Dueno::all();
-      return view('mascotas.create', compact('duenos'));
+      return view('mascotas.create', [$duenos=>'duenos']);
       
     }
 
